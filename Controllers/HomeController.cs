@@ -14,6 +14,8 @@ namespace PartyInvites.Controllers
     {
         public IActionResult Index()
         {
+            DateTime now = DateTime.Now;
+            ViewBag.TimeString = now.ToString();
             return View();
         }
         [HttpGet]
@@ -27,6 +29,7 @@ namespace PartyInvites.Controllers
         {
             if (ModelState.IsValid)
             {
+                guestResponse.RsvpTime = DateTime.Now;
                 Repository.AddResponse(guestResponse);
                 return View("Thanks", guestResponse);
             }
@@ -38,6 +41,7 @@ namespace PartyInvites.Controllers
 
         public ViewResult ListResponses()
         {
+            //this is a query that will return where WillAttend variable = to true
             return View(Repository.Responses.Where(r => r.WillAttend == true));
         }
     }

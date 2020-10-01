@@ -16,10 +16,13 @@ namespace PartyInvites.Models
         public string Email { get; set; }
 
         [Required(ErrorMessage ="Please enter your phone number")]
+        [Phone]
         public string Phone { get; set; }
 
         [Required(ErrorMessage ="Please specify whether you'll attend")]
         public bool? WillAttend { get; set; }
+
+        public DateTime RsvpTime { get; set; }
 
     }
 }
